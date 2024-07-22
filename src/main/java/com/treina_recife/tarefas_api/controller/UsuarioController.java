@@ -1,5 +1,6 @@
 package com.treina_recife.tarefas_api.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.treina_recife.tarefas_api.dto.UsuarioDto;
@@ -48,6 +50,22 @@ public class UsuarioController {
     	
     }
     
+    /*
+     * evita ambiguidade do método get para não ficar 2 metodos iguais com o mesmos parametros.
+     * 
+        @GetMapping("/email/{email}")
+	    public ResponseEntity<Usuario> buscarPorEmail(@PathVariable String email){
+	    	Optional<Usuario> obj = usuarioService.getUserEmail(email);
+	    	return ResponseEntity.ok().body(obj.get());
+	    }
+	    	
+
+     * 
+     * 
+     * 
+     * */
+    
+    
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletarUser(@PathVariable Long id){
     	
@@ -57,12 +75,22 @@ public class UsuarioController {
     		return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     	}
     	
-    	//criar o metodo de deletar no service
+    	 usuarioService.removerPorId(id);
     	
     	 return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     	
     }
     
+    @GetMapping("/{email}")
+    public ResponseEntity<Usuario> buscarPorEmail(@PathVariable String email){
+    	Optional<Usuario> obj = usuarioService.getUserEmail(email);
+    	return ResponseEntity.ok().body(obj.get());
+    }
     
+    @GetMapping("/data")
+    public ResponseEntity<List<Usuario>> filtrarUsuarioPorData(@RequestParam LocalDate inicio, 
+    		@RequestParam LocalDate fim){
+    	return ResponseEntity.ok().body(usuarioService.filtrarPorData(inicio, fim));
+    }
 	
 }
