@@ -1,6 +1,7 @@
 package com.treina_recife.tarefas_api.model;
 
 import java.time.LocalDate;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Column;
@@ -36,7 +37,6 @@ public class Usuario {
    @JsonFormat(pattern = "dd/MM/yyyy")
    @Column(nullable = false)
    private  LocalDate dataNascimento;
-   
    
    
 }
