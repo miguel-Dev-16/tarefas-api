@@ -4,7 +4,7 @@ Vamos trabalhar com Spring Api Rest. utilizando as camadas (Model, Repository, S
 
 No back-end  temos as seguintes comunicações, a camada de repository ela se comunica com a camada de service enviando entidades, que chamamos de classe modelo que fica na camada model, a camada de serviço ou service ela é responsável pela lógica de negócio, e por sua vez ela envia para o controller DTO. Na camada de controller ela é responsável por fazer a comunicação com o front-end através de requisições http, e estas requisições http ela tem métodos chamados de verbo http que são eles os principais GET, PUT, DELETE, POST.  Então a camada de Controller ela se comunica com o service que por sua vez o service envia DTO para a mesma. E o controller se comunica com o front através dos verbos http enviando e recebendo arquivos JSON.
 
-![](imgs\diagrama-rest.png)
+![](imgs/diagrama-rest.png)
 
 [TOC]
 
@@ -531,8 +531,8 @@ Os dados enviados podemos pegar através do @RequestParam, @PathVariable ou @Req
 
 ​                                                 Diagrama do funcionamento de uma API Rest.
 
-![](imgs\diagrama-rest-2.png)
+![](imgs/diagrama-rest-2.png)
 
 ​                                                Diagrama da resposta de uma Requisição.
 
-![](imgs\diagrama-rest-3.png)
+![](imgs/diagrama-rest-3.png)
