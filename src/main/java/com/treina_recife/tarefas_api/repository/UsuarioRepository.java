@@ -11,13 +11,10 @@ import java.time.LocalDate;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Long>{
     
-	//aqui ele busca por palavras exemplo as duas primeiras letras "mi"
 	List<Usuario> findByNomeLike(String nome);
 	
-	//buscar por email do usuáro
 	Optional<Usuario> findByEmail(String email);
 	
-	//buscar em ma faxa de datas
 	List<Usuario> findByDataNascimentoBetween(LocalDate inicio, LocalDate fim);
 	
 }

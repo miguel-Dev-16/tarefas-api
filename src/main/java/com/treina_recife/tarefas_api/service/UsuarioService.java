@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.treina_recife.tarefas_api.dto.UsuarioDto;
-import com.treina_recife.tarefas_api.model.Tarefa;
 import com.treina_recife.tarefas_api.model.Usuario;
 import com.treina_recife.tarefas_api.repository.UsuarioRepository;
 
@@ -18,24 +17,18 @@ public class UsuarioService {
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 	
-	
 	public Usuario cadastrar(Usuario objs) {
-	  return usuarioRepository.save(objs);//ele retorna o objeto cadastrado.
+	  return usuarioRepository.save(objs);
 	}
 	
 	public List<UsuarioDto> listarUsuarios(){
 		List<Usuario> us =  usuarioRepository.findAll();
 		return us.stream().map(x -> new UsuarioDto(x)).toList();
 	}
-	
-	public UsuarioDto pegaUsuario(Long id) {
-		Usuario u = usuarioRepository.findById(id).get();
-		return new UsuarioDto(u);
-	}
-	
-	/*a diferença do optional para usar o get() é que ele já trata a exceção*/
+		
 	public Optional<Usuario> buscarUsuario(Long id){
-		return usuarioRepository.findById(id);
+		Optional<Usuario> opt = usuarioRepository.findById(id);
+		return opt;
 	}
 	
 	public void removerPorId(Long id) {
@@ -48,6 +41,10 @@ public class UsuarioService {
 	
 	public List<Usuario> filtrarPorData(LocalDate inicio, LocalDate fim){
 		return usuarioRepository.findByDataNascimentoBetween(inicio, fim);
+	}
+	
+	public List<Usuario> buscarPorNome(String nome) {
+	    return usuarioRepository.findByNomeLike("%" + nome +"%");		
 	}
 	
 }
